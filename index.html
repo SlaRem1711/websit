@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Windows 10 Install • HP ProBook x360 — Minimal Guide</title>
+<style>
+  :root {
+    --bg: #0e0f12;
+    --panel: #14161a;
+    --muted: #9aa3ad;
+    --text: #e6e9ed;
+    --accent: #7bd7ff;
+    --accent-2: #9ef0c0;
+    --danger: #ff9a9a;
+    --ok: #b7ffa3;
+    --border: #23262b;
+    --link: #97c8ff;
+    --link-hover: #bee0ff;
+    --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+    --rounded: 14px;
+    --radius: 12px;
+    --shadow: 0 0 0 1px rgba(255,255,255,0.02), 0 10px 30px rgba(0,0,0,0.45);
+  }
+  * { box-sizing: border-box; }
+  html, body { background: var(--bg); color: var(--text); margin: 0; font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, sans-serif; }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { color: var(--link-hover); text-decoration: underline; }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 28px 18px 64px; }
+  header { display: grid; gap: 6px; margin-bottom: 20px; }
+  header h1 { font-size: 1.6rem; letter-spacing: .2px; margin: 0; }
+  header p { margin: 0; color: var(--muted); }
+  .note { background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0)); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 18px; display: grid; gap: 8px; margin: 8px 0 24px; box-shadow: var(--shadow); }
+  .note .badge { display:inline-block; font-size: 12px; padding: 2px 8px; border-radius: 999px; background: #19202a; color: var(--accent); border: 1px solid #223140; }
+  .grid { display: grid; gap: 16px; }
+  @media (min-width: 860px) { .grid { grid-template-columns: 1.1fr .9fr; } }
+  .card { background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; box-shadow: var(--shadow); }
+  .card h2 { font-size: 1.05rem; margin: 0 0 10px; letter-spacing: .2px; }
+  .steps { display: grid; gap: 14px; }
+  .step { border: 1px dashed #2a2e34; border-radius: 12px; padding: 14px; background: #121317; }
+  .step h3 { margin: 0 0 8px; font-size: 1rem; }
+  .step p { margin: 0; color: var(--muted); }
+  .kbd { font-family: var(--mono); font-size: .925rem; padding: 0 6px; border-radius: 6px; background: #171a20; border: 1px solid #2a2f36; color: #dfe7f0; }
+  .list { margin: .4rem 0 0; padding-left: 1.2rem; color: var(--muted); }
+  .links { display: grid; gap: 10px; }
+  .linkrow { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:10px 12px; border:1px solid var(--border); background:#121317; border-radius:10px; }
+  .btn { display:inline-flex; align-items:center; gap:10px; font-weight:600; padding:10px 14px; border-radius:10px; border:1px solid #2a2e34; background:#1a1e25; color:var(--text); text-decoration:none; }
+  .btn:hover { border-color:#39404a; transform: translateY(-1px); transition: .15s ease; }
+  .btn.acc { border-color:#1f3647; background:#10202a; color:#dff4ff; }
+  .btn.ok  { border-color:#1a3b2a; background:#0e2017; color:#e2ffef; }
+  .muted { color: var(--muted); font-size: .95rem; }
+  code, pre { font-family: var(--mono); background:#0f1216; border:1px solid #22262d; color:#e8eef7; border-radius:8px; }
+  pre { padding: 12px; overflow:auto; }
+  .hr { height:1px; background:linear-gradient(90deg, transparent, #242830, transparent); margin: 22px 0; border:0;}
+  details { border:1px solid var(--border); background:#111419; border-radius:12px; padding: 12px 14px; }
+  details summary { cursor: pointer; list-style:none; }
+  .footer { margin-top: 32px; color: var(--muted); font-size: .9rem; }
+  .pill { font-size: 12px; padding: 2px 8px; border-radius: 999px; border: 1px solid #37414e; background: #141a22; color: #cbd6e2; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Install Windows 10 on HP ProBook x360 — Minimal Guide</h1>
+      <p>Clean, dark, readable. All the steps + official links. Works with any ProBook x360 model (G1–G8, 11/4xx series).</p>
+    </header>
+
+    <div class="note">
+      <span class="badge">Heads-up</span>
+      <div class="muted">
+        Windows 10 reached end-of-support on <strong>October 14, 2025</strong>. You can still clean-install it and then add drivers,
+        but consider Windows 11 if your device is compatible. See Microsoft’s install media and ISO pages below.
+      </div>
+    </div>
+
+    <div class="grid">
+      <!-- LEFT: Steps -->
+      <section class="card">
+        <h2>Steps (Quick Path)</h2>
+        <div class="steps">
+
+          <div class="step">
+            <h3>1) Download Windows 10</h3>
+            <p>
+              Use Microsoft’s official ISO page or the Media Creation Tool.
+              <ul class="list">
+                <li><a href="https://www.microsoft.com/software-download/windows10" target="_blank" rel="noopener">Windows 10 download (Media Creation Tool)</a></li>
+                <li><a href="https://www.microsoft.com/de-de/software-download/windows10iso" target="_blank" rel="noopener">Direct ISO (if MCT not supported)</a></li>
+                <li><a href="https://support.microsoft.com/en-us/windows/create-installation-media-for-windows-99a58364-8c02-206f-aa6f-40c3b507420d" target="_blank" rel="noopener">Create installation media — official guide</a></li>
+              </ul>
+            </p>
+          </div>
+
+          <div class="step">
+            <h3>2) Create a bootable USB (Rufus)</h3>
+            <p>
+              Plug an 8–16&nbsp;GB USB. Open Rufus → select ISO → <span class="kbd">Partition: GPT</span> for UEFI (most HP x360),
+              or <span class="kbd">MBR</span> for legacy BIOS → <span class="kbd">Start</span>.
+              <ul class="list">
+                <li><a href="https://rufus.ie/" target="_blank" rel="noopener">Rufus (official)</a> · <a href="https://github.com/pbatard/rufus" target="_blank" rel="noopener">GitHub</a></li>
+              </ul>
+            </p>
+          </div>
+
+          <div class="step">
+            <h3>3) Add your drivers to the same USB</h3>
+            <p>
+              After Rufus finishes, open the USB in Explorer and create <span class="kbd">/Drivers</span> and <span class="kbd">/Apps</span>.
+              Copy Wi-Fi/Chipset/Graphics/Touchpad/Touchscreen drivers there. (Do <em>not</em> modify <span class="kbd">/sources</span> or <span class="kbd">/boot</span>.)
+            </p>
+          </div>
+
+          <div class="step">
+            <h3>4) Boot the HP ProBook x360 from USB</h3>
+            <p>
+              Power on, repeatedly press <span class="kbd">Esc</span> for Startup Menu → <span class="kbd">F9</span> Boot Options → choose your USB.
+              If the USB doesn’t appear, enter <span class="kbd">F10</span> BIOS and ensure USB boot is enabled; disable Secure Boot if needed.
+            </p>
+          </div>
+
+          <div class="step">
+            <h3>5) Install Windows 10 (clean)</h3>
+            <p>
+              During setup, delete partitions on the target drive (careful: erases data), select the unallocated space, and proceed.
+              After first desktop boot, open your USB’s <span class="kbd">/Drivers</span> and install drivers in this order:
+            </p>
+            <ul class="list">
+              <li>Chipset / Intel Serial&nbsp;IO / MEI</li>
+              <li>Intel/AMD graphics</li>
+              <li>Wi-Fi / Bluetooth</li>
+              <li>Audio (Realtek)</li>
+              <li>Touchpad/Touchscreen (ELAN/Goodix/Synaptics), Hotkeys</li>
+              <li>HP Support Assistant (then run “Check for updates”)</li>
+            </ul>
+          </div>
+
+          <div class="step">
+            <h3>6) Finish & verify</h3>
+            <ul class="list">
+              <li><span class="kbd">Win</span> + <span class="kbd">X</span> → <strong>Device Manager</strong> → no devices with yellow marks.</li>
+              <li><strong>Windows Update</strong> → get remaining updates.</li>
+              <li>In HP Support Assistant, install any firmware/BIOS/touch updates.</li>
+            </ul>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- RIGHT: Links & Model notes -->
+      <aside class="card">
+        <h2>Official Links</h2>
+        <div class="links">
+          <div class="linkrow">
+            <div>
+              <div><strong>Windows 10 ISO / MCT</strong></div>
+              <div class="muted">Microsoft</div>
+            </div>
+            <div>
+              <a class="btn acc" href="https://www.microsoft.com/software-download/windows10" target="_blank" rel="noopener">Open</a>
+            </div>
+          </div>
+
+          <div class="linkrow">
+            <div>
+              <div><strong>Create installation media</strong></div>
+              <div class="muted">Microsoft How-To</div>
+            </div>
+            <a class="btn" href="https://support.microsoft.com/en-us/windows/create-installation-media-for-windows-99a58364-8c02-206f-aa6f-40c3b507420d" target="_blank" rel="noopener">Guide</a>
+          </div>
+
+          <div class="linkrow">
+            <div>
+              <div><strong>Rufus</strong> (official site)</div>
+              <div class="muted">Bootable USB creator</div>
+            </div>
+            <a class="btn" href="https://rufus.ie/" target="_blank" rel="noopener">Open</a>
+          </div>
+
+          <div class="linkrow">
+            <div>
+              <div><strong>HP Support Assistant</strong></div>
+              <div class="muted">Auto-detect updates</div>
+            </div>
+            <a class="btn ok" href="https://support.hp.com/de-de/help/hp-support-assistant" target="_blank" rel="noopener">Download</a>
+          </div>
+
+          <div class="linkrow">
+            <div>
+              <div><strong>HP Drivers — ProBook x360</strong></div>
+              <div class="muted">Choose exact model (G1–G8, 11/4xx)</div>
+            </div>
+            <a class="btn" href="https://support.hp.com/us-en/drivers" target="_blank" rel="noopener">Find model</a>
+          </div>
+
+          <div class="linkrow">
+            <div>
+              <div><strong>HP Startup/BIOS Keys</strong></div>
+              <div class="muted"><span class="kbd">Esc</span> → <span class="kbd">F9</span>/<span class="kbd">F10</span></div>
+            </div>
+            <a class="btn" href="https://support.hp.com/sk-en/document/ish_3900499-3190557-16" target="_blank" rel="noopener">Reference</a>
+          </div>
+        </div>
+
+        <div class="hr"></div>
+
+        <details>
+          <summary><strong>Don’t know your exact ProBook x360 model?</strong></summary>
+          <div class="muted" style="margin-top:8px">
+            On Windows, run <code>msinfo32</code> (System Model) or check the label under the laptop hinge.
+            Then open HP Drivers → enter the model (e.g., “ProBook x360 435 G8” or “x360 11 G3 EE”)
+            and pick Windows 10 64-bit.
+          </div>
+        </details>
+
+        <div class="hr"></div>
+
+        <details>
+          <summary><strong>Tip: Put ISO + drivers on the <em>same</em> USB</strong></summary>
+          <div class="muted" style="margin-top:8px">
+            After Rufus creates the bootable USB, you can safely add folders like <code>/Drivers</code> and <code>/Apps</code>.
+            The installer ignores extra files at the root; just don’t change <code>/sources</code> or <code>/boot</code>.
+          </div>
+        </details>
+
+        <div class="hr"></div>
+
+        <details>
+          <summary><strong>Windows 10 EOL & alternatives</strong> <span class="pill">FYI</span></summary>
+          <div class="muted" style="margin-top:8px">
+            Windows 10 is out of support (Oct&nbsp;14, 2025). If your ProBook x360 meets requirements,
+            consider installing Windows 11 using the same process with a Windows 11 ISO.
+          </div>
+        </details>
+      </aside>
+    </div>
+
+    <section class="card" style="margin-top:16px">
+      <h2>Troubleshooting (HP-specific)</h2>
+      <ul class="list">
+        <li><strong>USB not listed in F9:</strong> In BIOS (<span class="kbd">F10</span>), enable USB boot, set Boot Mode to UEFI, and temporarily disable Secure Boot.</li>
+        <li><strong>Touchscreen/pen not working:</strong> Install chipset + Intel Serial IO first, then ELAN/Goodix touchscreen and HP Hotkey/Quick Launch drivers from your model’s page. Reboot after each group.</li>
+        <li><strong>Wi-Fi missing:</strong> Install Intel/Realtek Wi-Fi driver from HP page; some models need Bluetooth separate.</li>
+        <li><strong>Audio issues:</strong> Install Realtek audio, then run HP Support Assistant for firmware/BIOS updates.</li>
+        <li><strong>Activation:</strong> If the ProBook previously had Windows 10/11, it usually auto-activates online. Sign in and run Windows Update.</li>
+      </ul>
+    </section>
+
+    <footer class="footer">
+      Made for HP ProBook x360 owners who like clean instructions. Safe links ↑
+    </footer>
+  </div>
+</body>
+</html>
