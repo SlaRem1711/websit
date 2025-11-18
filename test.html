@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Windows 10 • HP ProBook x360 — Simple Install</title>
+<style>
+  :root {
+    --bg:#0e0f12;--panel:#14161a;--muted:#9aa3ad;--text:#e6e9ed;--border:#23262b;
+    --link:#97c8ff;--link-hover:#bee0ff;--radius:12px;--shadow:0 0 0 1px rgba(255,255,255,0.02),0 10px 30px rgba(0,0,0,0.45);
+  }
+  *{box-sizing:border-box}
+  html,body{background:var(--bg);color:var(--text);margin:0;font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif}
+  a{color:var(--link);text-decoration:none} a:hover{color:var(--link-hover);text-decoration:underline}
+  .wrap{max-width:980px;margin:0 auto;padding:28px 18px 64px}
+  header{display:grid;gap:6px;margin-bottom:20px}
+  header h1{font-size:1.5rem;margin:0}
+  header p{margin:0;color:var(--muted)}
+  .note,.card{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+  .note{margin:8px 0 24px}
+  .grid{display:grid;gap:16px}
+  @media(min-width:860px){.grid{grid-template-columns:1.1fr .9fr}}
+  .steps{display:grid;gap:12px}
+  .step{border:1px dashed #2a2e34;border-radius:10px;padding:12px;background:#121317}
+  .step h3{margin:0 0 6px;font-size:1rem}
+  .list{margin:.3rem 0 0;padding-left:1.1rem;color:var(--muted)}
+  .kbd{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.92rem;padding:0 6px;border-radius:6px;background:#171a20;border:1px solid #2a2f36}
+  .links{display:grid;gap:10px}
+  .linkrow{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--border);background:#121317;border-radius:10px}
+  .btn{display:inline-flex;align-items:center;font-weight:600;padding:8px 12px;border-radius:10px;border:1px solid #2a2e34;background:#1a1e25;color:var(--text)}
+  .btn:hover{border-color:#39404a;transform:translateY(-1px);transition:.15s ease}
+  .hr{height:1px;background:linear-gradient(90deg,transparent,#242830,transparent);margin:18px 0;border:0}
+  .muted{color:var(--muted);font-size:.95rem}
+  details{border:1px solid var(--border);background:#111419;border-radius:12px;padding:12px 14px}
+  summary{cursor:pointer}
+  footer{margin-top:28px;color:var(--muted);font-size:.9rem}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Install Windows 10 aw9</h1>
+      <p>ma3arfshi 3lash dayer website ida bghiti d skippi website shoflk had <a href="https://www.youtube.com/watch?v=v4hHQrivf-k">video</a>, ana menno shoft steps.</p>
+    </header>
+
+    <div class="note">
+      <strong>Note:</strong> Windows 10 reached end of support (Oct 14, 2025). You can still install it; walakin 7di karek men viruses hit security updates are no more.
+    </div>
+
+    <div class="grid">
+      <!-- LEFT -->
+      <section class="card">
+        <h2>Steps</h2>
+        <div class="steps">
+
+          <div class="step">
+            <h3>1) Get the Windows 10 ISO</h3>
+            <ul class="list">
+              <li>Download the ISO from Microsoft (link at wla lta7t). Click the download button under <code>"Création d’un support d’installation de Windows 10"</code></li>
+              <li>After running the <code>setup dial Media Creation Tool</code>, agree to the license and then pick the second option (atkon shihaja 3anda 3alaqa b usb...)</li>
+              <li>pick shi random folder for now li d installi feh windows 10, 3la baydmen tsala installation we go configure usb</li>
+            </ul>
+          </div>
+
+          <div class="step">
+            <h3>2) Make a bootable USB (Rufus)</h3>
+            <ul class="list">
+              <li>click the link on the right (or lta7t) to <code>download</code> Rufus, on the latest release page, pick first option "rufus-....exe"</li>
+              <li>Open Rufus → select your USB → select the ISO.</li>
+              <li>app should look like this: <img src="imgs\rufus.png" width="500" height="300"></li>
+              <li><span class="kbd">Device</span> howa USB dialk, <span class="kbd">Boot selection</span> khtar hna windows 10 li instaliti qbayl. <span class="kbd">image option</span>pick standard windows installation</li>
+              <li><span class="kbd">Partition scheme:</span>im not sure if yours is gpt wla mbd, check shmen model 3ndk u shof ina wa7ed dkhtar. Probably GPT tho </li>
+              <li>Click <strong>Start</strong>.</li>
+              <li><img src="./imgs/userexp.png" width="500" height="300"></li> 
+              <li>f screen foqiya, press create local account and pick a name.</li>
+              <li>Click <strong>Ok</strong>.</li>
+              <li>ignore the warning and proceed</li>
+              
+            </ul>
+          </div>
+
+          <div class="step">
+            <h3>3) Put drivers on the same USB</h3>
+            <ul class="list">
+              <li>fash dsali men rufus, mshi n USB</li>
+              <li>Create a folder: <span class="kbd">/Drivers</span></li>
+              <li>Download HP drivers for your exact model and copy them there.</li>
+              <li>Copy Bluetooth/Wi-Fi/Chipset/Graphics/Touchpad/Touchscreen drivers there. (Do <em>not</em> modify <span class="kbd">/sources</span> or <span class="kbd">/boot</span>.)</li>
+              <li>remove usb dialk u tfi pc fash t2aked kolshi howa hadak</li>
+            </ul>
+          </div>
+
+          <div class="step">
+            <h3>4) Boot from USB</h3>
+            
+            <ul class="list">
+              <p>daba 3andk <span class="kbd">PC mtfi</span> u <span class="kbd">USB feh /drivers folder u dekshi dial rufus</span>. to install windows 10:<p></p>
+              <li>turn on laptop and spam <span class="kbd">F10(button li kadakhlek n bios ana mashi mt2akd wash F10)</span></li>
+              <li>mshi n system <span class="kbd">configuration</span></li>
+              <li>activi <span class="kbd">USB Boot</span></li>
+              <li>fetesh 3la <span class="kbd">Boot Options</span> wla something along the lines of <span class="kbd">Boot Order</span></li>
+              <li>Pick <span>"USB Diskette on Key / USB Hard Disk"</span></li>
+              <li>Save and Close. Pc ghay restarti daba ida madakhlksh n installation dial windows: </li>
+              <li>Press <span class="kbd">ESC</span> moraha press <span class="kbd">F9 (Boot menu)</span> and choose USB.</li>  
+              <li>Restarti Pc</li>
+            </ul>
+          </div>
+
+          <div class="step">
+            <h3>5) Install Windows</h3>
+            
+            <ul class="list">
+              <p>safe daba an installiw windows. choose language, click install now then pick second option diyal "install windows only (Advanced)". In the Partitions section just </p>
+              <li>Delete Partitions kamlin li 3andek previously, 7ta debqalek 1 partition kbira (IGNORE IF YOU DONT HAVE MULTIPLE PARTITIONS)</li>
+              <li>click next lol</li>
+              <li>wait for it to begin installing windows.</li>
+              <li>Configure your experience.</li>
+              <li>any option that shows up about wifi just skip it for now.</li>
+              <li>mora madssali, installi dek drivers</li>
+            </ul>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- RIGHT -->
+      <aside class="card">
+        <h2>Essential Links</h2>
+        <div class="links">
+          <div class="linkrow">
+            <div>
+              <div><strong>Windows 10 ISO</strong></div>
+              <div class="muted">Microsoft</div>
+            </div>
+            <a class="btn" href="https://www.microsoft.com/software-download/windows10" target="_blank" rel="noopener">Open</a>
+          </div>
+
+          <div class="linkrow">
+            <div>
+              <div><strong>Rufus</strong></div>
+              <div class="muted">Create bootable USB</div>
+            </div>
+            <a class="btn" href="https://rufus.ie/" target="_blank" rel="noopener">Open</a>
+          </div>
+
+          <div class="linkrow">
+            <div>
+              <div><strong>HP Drivers</strong></div>
+              <div class="muted">Enter your ProBook x360 model</div>
+            </div>
+            <a class="btn" href="https://support.hp.com/us-en/drivers" target="_blank" rel="noopener">Open</a>
+          </div>
+
+        <div class="hr"></div>
+
+        <details>
+          <summary><strong>Find exact model</strong></summary>
+          <div class="muted" style="margin-top:8px">
+            9leb pc. Khssa dkon mktoba b7al hayda "HP Probook x360 237GHS" matalan.
+          </div>
+        </details>
+
+        <div class="hr"></div>
+
+        <details>
+          <summary><strong>TIP: put ISO + drivers on the same USB</strong></summary>
+          <div class="muted" style="margin-top:8px">
+            After Rufus creates the bootable USB, you can THEN add folders to pu the drivers in. Just dont touch the <code>/sources</code> wla <code> /boot</code> folders
+          </div>
+        </details>
+      </aside>
+    </div>
+
+    <section class="card" style="margin-top:16px">
+      <h2>Quick Fixes</h2>
+      <ul class="list">
+        <li><strong>USB not listed:</strong> Tap <span class="kbd">Esc</span> → <span class="kbd">F10</span>, enable USB boot, use UEFI; disable Secure Boot temporarily if needed.</li>
+        <li><strong>No Wi-Fi / Touch:</strong> Install chipset/IO first, then Wi-Fi/Bluetooth, then touchscreen/touchpad; finish with HP Support Assistant.</li>
+        <li><strong>Activation:</strong> If the device had Windows before, it usually activates online automatically.</li>
+      </ul>
+    </section>
+
+    <footer>That’s it — 5 steps and 4 links.</footer>
+  </div>
+</body>
+</html>
